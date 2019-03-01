@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All courses</title>
+  </head>
+  <body>
+    <% course.courseId %>
+    <ul>
+      <% course.file.forEach( (file) => { %>
+      <li><%= file.fileName %></a></li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
