@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 
-var Course = require("./material.js");
+var Course = require("./course_schema.js");
 
 app.set("view engine", "ejs");
 
