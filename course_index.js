@@ -80,6 +80,9 @@ app.use("/home", (req, res) => {
 
 app.use("/public", express.static("public"));
 
+app.use('/', (req, res) => {
+  res.redirect('/home');
+});
 app.listen(process.env.PORT||3000, () => {
   console.log("listening at port 3000");
 });
