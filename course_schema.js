@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 
 var fileSchema = new Schema({
   fileName: { type: String, required: true },
-  fileLink: { type: String, requred: true }
+  fileLink: { type: String, required: true }
 });
 
 var courseSchema = new Schema({
