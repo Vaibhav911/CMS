@@ -80,6 +80,6 @@ app.use("/home", (req, res) => {
 
 app.use("/public", express.static("public"));
 
-app.listen(3000, () => {
+app.listen(process.env.PORT||3000, () => {
   console.log("listening at port 3000");
 });
