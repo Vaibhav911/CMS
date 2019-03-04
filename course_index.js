@@ -6,7 +6,7 @@ var Course = require("./course_schema.js");
 app.set("view engine", "ejs");
 
 var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extender: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/course", (req, res) => {
   var courseId = req.query.courseId;
