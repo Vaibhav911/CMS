@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All courses</title>
+  </head>
+  <body>
+    <form action="/profile" method="post">
+      <input type="submit" value="profile" />
+    </form>
+    <form action="/logout" method="post">
+      <input type="submit" value="logout" />
+    </form>
+    <p></p>
+    <hr />
+    <% student.student %>
+    <ul>
+      <% student.course.forEach( (course) => { %>
+      <li>
+        <a href="/course/?courseId=<%= course.courseName %>"
+          ><%= course.courseName %></a
+        >
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

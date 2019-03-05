@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <form action="/home" method="post">
+      <input type="submit" value="home" />
+    </form>
+    <form action="/logout" method="post">
+      <input type="submit" value="logout" />
+    </form>
+    <p></p>
+    <hr />
+    <form action="/update" method="post">
+      studentId: <%=student.studentId %><br />
+      <input name="username" value="<%= student.studentId %>" hidden />
+
+      <!--  Name: <%=student.name %><br />
+  <input name="username" value="<%= student.name %>" hidden />   -->
+
+      Name:<input name="name" value="<%= student.name %>" /><br />
+
+      Age:<input name="age" value="<%= student.age %>" /><br />
+
+      <!-- studentId:<input name="studentId" value="<%= student.studentId %>" /><br />    -->
+
+      contact:<input name="contact" value="<%= student.contact %>" /><br />
+
+      emailId:<input name="emailId" value="<%= student.emailId %>" /><br />
+
+      <input type="submit" value="Update" />
+    </form>
+    <br />
+  </body>
+</html>
