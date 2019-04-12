@@ -12,7 +12,8 @@ class Calculations extends Component {
     var len = 1;
     axios
       .get(
-        "https://nameless-shelf-39498.herokuapp.com/getmarks/?courseId=CSF111"
+        "http://nameless-shelf-39498.herokuapp.com/getmarks/?courseId=" +
+          this.props.courseId
       )
       .then(res => {
         console.log(

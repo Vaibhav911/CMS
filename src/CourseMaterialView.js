@@ -10,7 +10,7 @@ class CourseMaterialView extends Component {
   componentDidMount() {
     // console.log("course id " + this.props.courseId);
     var str =
-      "https://nameless-shelf-39498.herokuapp.com/coursecontent/?courseId=" +
+      "http://nameless-shelf-39498.herokuapp.com/coursecontent/?courseId=" +
       this.props.courseId;
     axios.get(str).then(res => {
       console.log("response " + JSON.stringify(res.data[0].file.length));
@@ -26,15 +26,21 @@ class CourseMaterialView extends Component {
     var len = this.state.file.length;
     for (var i = 0; i < len; i++)
       table.push(
-        <tr style={{ padding: "100px" }}>
+        <tr style={{ padding: "100px", margin: "100px" }}>
           <a className="course-material-box" href={this.state.file[i].fileLink}>
             {this.state.file[i].fileName}
           </a>
         </tr>
       );
     return (
-      <div style={{ paddingRight: "1000px", paddingBottom: "100px" }}>
-        <table>{table}</table>
+      <div
+        style={{
+          paddingRight: "1000px",
+          paddingBottom: "100px",
+          width: "1000px"
+        }}
+      >
+        <table style={{ padding: "100px", width: "1000px" }}>{table}</table>
       </div>
     );
   }

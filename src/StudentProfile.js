@@ -2,6 +2,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./label.css";
+import Cookies from "universal-cookie";
+var cookies = new Cookies();
+
 //import { Button } from "react-bootstrap";
 class StudentProfile extends Component {
   // initialize our state
@@ -21,35 +24,67 @@ class StudentProfile extends Component {
     intervalIsSet: false,
     idToDelete: null,
     idToUpdate: null,
-    idToGet: -1,
-    objectToUpdate: null
+    idToGet: 8,
+    objectToUpdate: null,
+    dat2: 123
   };
 
   componentDidMount() {
     console.log("mounting component");
-    axios
-      .get("https://nameless-shelf-39498.herokuapp.com/getData")
-      .then(res => {
-        console.log("here it isr" + res);
-        var length = [];
-        var i = 0;
-        console.log("papa" + res.data.length);
-        for (i = 0; i < res.data.length; i++) {
-          length.push(i);
-        }
-        console.log("haha" + length);
-        this.setState({
-          length: length,
-          length1: res.length,
-          data: res.data
-        });
+    axios.get("http://nameless-shelf-39498.herokuapp.com/getData").then(res => {
+      console.log("here it isr" + res);
+      var length = [];
+      var i = 0;
+      console.log("papa" + res.data.length);
+      for (i = 0; i < res.data.length; i++) {
+        length.push(i);
+      }
+      console.log("haha" + length);
+      this.setState({
+        length: length,
+        length1: res.length,
+        data: res.data
       });
+      const { data } = this.state;
+      // console.log(data);
+      console.log("In Mounr" + JSON.stringify(data));
+      //console.log("length array:" + this.state.length);
+      var index = 0;
+      var obj = null;
+      for (var i = 0; i < data.length; i++) {
+        console.log("hello");
+        if (data[i].id == cookies.get("username")) {
+          //give id here-------------------------
+          //Give id here
+          index = i;
+        }
+      }
+      console.log("Index is" + index);
+      obj = data[index];
+      if (!obj) {
+        console.log("Obj not there");
+      } else {
+        console.log("Obj iso" + JSON.stringify(obj.id));
+        this.setState({
+          id: obj.id,
+          message: obj.message,
+          name: obj.name,
+          age: obj.age,
+          contact: obj.contact,
+          emailId: obj.emailId,
+          password: obj.password
+        });
+        console.log("Id" + this.state.id);
+        console.log("msg" + this.state.message);
+      }
+    });
+    /* */
   }
 
   putDataToDB = (message, name, age, contact, emailId, password) => {
     let idToBeAdded = this.state.id;
 
-    axios.post("https://nameless-shelf-39498.herokuapp.com/putData", {
+    axios.post("http://nameless-shelf-39498.herokuapp.com/putData", {
       id: idToBeAdded,
       message: message,
       name: name,
@@ -70,7 +105,7 @@ class StudentProfile extends Component {
       }
     });
 
-    axios.delete("https://nameless-shelf-39498.herokuapp.com/deleteData", {
+    axios.delete("http://nameless-shelf-39498.herokuapp.com/deleteData", {
       data: {
         id: objIdToDelete
       }
@@ -98,7 +133,7 @@ class StudentProfile extends Component {
     });
     console.log("Name log" + name);
     console.log("Object Id to be updated is", objIdToUpdate);
-    axios.post("https://nameless-shelf-39498.herokuapp.com/updateData", {
+    axios.post("http://nameless-shelf-39498.herokuapp.com/updateData", {
       id: idToUpdate,
 
       message: updateToApply,
@@ -109,121 +144,130 @@ class StudentProfile extends Component {
       password: password
     });
   };
-
+  onChangeId(e) {
+    this.setState({ id: e.target.value });
+  }
+  onChangeMessage(e) {
+    this.setState({ message: e.target.value });
+  }
+  onChangeName(e) {
+    this.setState({ name: e.target.value });
+  }
+  onChangeAge(e) {
+    this.setState({ age: e.target.value });
+  }
+  onChangeContact(e) {
+    this.setState({ contact: e.target.value });
+  }
+  onChangeEmailId(e) {
+    this.setState({ emailId: e.target.value });
+  }
+  onChangePassword(e) {
+    this.setState({ password: e.target.value });
+  }
+  // onChangeId(e){
+  //   this.setState({id:e.target.value})
+  // }
   render() {
-    const { data } = this.state;
+    //const { data } = this.state;
     // console.log(data);
-    console.log(data);
-    console.log("length array:" + this.state.length);
+    //console.log(data);
+    //console.log("length array:" + this.state.length);
+    // var index = 0;
+    // var obj = null;
+    // for (var i = 0; i < data.length; i++) {
+    //   console.log("hello");
+    //   if (data[i].id == "8") {
+    //     index = i;
+    //   }
+    // }
+    // console.log("Index is" + index);
+    // obj = data[index];
+    // if (!obj) {
+    //   console.log("Obj not there");
+    //   return <div />;
+    // } else {
+    //   console.log("Obj iso" + JSON.stringify(obj.id));
+    //   //this.setState({ id: obj.id, message: obj.message });
+    //   console.log("Id" + this.state.id);
+    //   console.log("msg" + this.state.message);
+    const { data } = this.state;
     return (
       <div>
         <div>
-          <input
+          {/* <input
             type="text"
             style={{ width: "400px" }}
             onChange={e => this.setState({ idToGet: e.target.value })}
             placeholder="put value of the id to get here"
-          />
-
-          <ul>
-            {this.state.length <= 0
-              ? "NO DB ENTRIES YET"
-              : this.state.length.map(dat =>
-                  data[dat].id != this.state.idToGet ? (
-                    ""
-                  ) : (
-                    // <li style={{ padding: "10px" }} key={data[dat].id}>
-                    <div>
-                      <h2>Profile</h2>
-                      <span style={{ color: "gray" }}> msg: </span>
-
-                      <label type="ll">{data[dat].message}</label>
-                      <br />
-                      <br />
-                      {/*data[dat].message*/}
-                      <br />
-
-                      <span style={{ color: "gray" }}> name: </span>
-                      <label type="ll">{data[dat].name}</label>
-                      <br />
-                      <br />
-                      <br />
-                      <span style={{ color: "gray" }}> age: </span>
-                      <label type="ll">{data[dat].age}</label>
-                      <br />
-                      <br />
-                      <br />
-                      <span style={{ color: "gray" }}> contact: </span>
-                      <label type="ll">{data[dat].contact}</label>
-                      <br />
-                      <br />
-                      <br />
-                      <span style={{ color: "gray" }}> emailId: </span>
-                      <label type="ll">{data[dat].emailId}</label>
-                      <br />
-                      <br />
-                      <br />
-                      <span style={{ color: "gray" }}> password: </span>
-                      <label type="ll">{data[dat].password}</label>
-                      <br />
-                      <br />
-                      <br />
-                    </div>
-                    // </li>
-                  )
-                )}
-          </ul>
+          /> */}
         </div>
 
-        <h2>Update Your Profile</h2>
+        <h2 className="demo2">Update Your Profile</h2>
+
         <div style={{ padding: "10px" }}>
           <input
-            type="text"
+            //type="text"
+            className="dhruvinput"
             style={{ width: "400px" }}
-            onChange={e => this.setState({ idToUpdate: e.target.value })}
+            onChange={this.onChangeId.bind(this)}
+            value={this.state.id}
             placeholder="id of item to update here"
           />
           <br />
           <input
-            type="text"
-            onChange={e => this.setState({ message: e.target.value })}
+            //type="text"
+            className="dhruvinput"
+            onChange={this.onChangeMessage.bind(this)}
+            // value={data[this.state.dat2].message}
             placeholder="Message"
+            value={this.state.message}
             style={{ width: "400px" }}
           />
           <br />
           {/*---------------------*/}
           <input
-            type="text"
-            onChange={e => this.setState({ name: e.target.value })}
+            //type="text"
+            className="dhruvinput"
+            onChange={this.onChangeName.bind(this)}
             placeholder="Name"
+            value={this.state.name}
             style={{ width: "400px" }}
           />
           <br />
           <input
-            type="text"
-            onChange={e => this.setState({ age: e.target.value })}
+            //type="text"
+            className="dhruvinput"
+            onChange={this.onChangeAge.bind(this)}
             placeholder="Age"
+            value={this.state.age}
             style={{ width: "400px" }}
           />
           <br />
           <input
-            type="text"
-            onChange={e => this.setState({ contact: e.target.value })}
+            //type="text"
+            className="dhruvinput"
+            onChange={this.onChangeContact.bind(this)}
             placeholder="Contact"
+            value={this.state.contact}
             style={{ width: "400px" }}
           />
           <br />
           <input
-            type="text"
-            onChange={e => this.setState({ emailId: e.target.value })}
+            //type="text"
+            className="dhruvinput"
+            onChange={this.onChangeEmailId.bind(this)}
             placeholder="emailId"
+            value={this.state.emailId}
             style={{ width: "400px" }}
           />
           <br />
           <input
-            type="text"
-            onChange={e => this.setState({ password: e.target.value })}
+            //type="text"
+            className="dhruvinput"
+            onChange={this.onChangePassword.bind(this)}
             placeholder="Password"
+            value={this.state.password}
             style={{ width: "400px" }}
           />
           <br />
@@ -241,7 +285,7 @@ class StudentProfile extends Component {
             class="button button2"
             onClick={() =>
               this.updateDB(
-                this.state.idToUpdate /*Give the Id here*/,
+                this.state.id /*Give the Id here*/,
                 this.state.message,
                 this.state.name,
                 this.state.age,
@@ -256,6 +300,7 @@ class StudentProfile extends Component {
         </div>
       </div>
     );
+    //}
   }
 }
 

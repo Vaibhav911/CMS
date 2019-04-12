@@ -76,7 +76,8 @@ class PostNotificationExtraClass extends Component {
     let notification = this.state.notification;
     let date = this.state.date;
     let time = this.state.time;
-    let course = "csf210";
+    let course = this.props.courseId;
+    console.log("in epostnotificagtion courseid is " + this.props.courseId);
 
     axios.post("/create", {
       courseId: course,
@@ -89,7 +90,7 @@ class PostNotificationExtraClass extends Component {
 
   render() {
     return (
-      <div className="PostNotification">
+      <div className="PostNotification" style={{ width: "1700px" }}>
         <header
           className="PostNotification-header"
           style={{ backgroundColor: "white" }}
@@ -97,18 +98,28 @@ class PostNotificationExtraClass extends Component {
           <span style={{ color: "red" }}>
             <h2>Post Notification For Extra Class</h2>
           </span>
-          <span style={{ color: "black" }}>
-            <span style={{ color: "grey" }}>Topic :</span> Extra Class is on{" "}
-            {this.state.date}
+          <span style={{ color: "black", fontSize: "20px", padding: "4px" }}>
+            <span style={{ color: "grey", fontSize: "20px", padding: "4px" }}>
+              Topic :
+            </span>{" "}
+            Extra Class is on {this.state.date}
             <br />
           </span>
           <DateExtraClass date={this.state.date} action={this.changeDate} />
           <TimeExtraClass date={this.state.date} action={this.changeTime} />
           <ClassExtraClass date={this.state.date} action={this.changeClass} />
-          <span style={{ color: "grey" }}>
-            Resulted Notification:<br />
+          <span
+            style={{
+              color: "grey",
+              fontSize: "20px",
+              padding: "4px",
+              width: "1200px"
+            }}
+          >
+            Resulted Notification:
+            <br />
           </span>
-          <span style={{ color: "black" }}> {this.state.notification}</span>
+          {/* <span style={{ color: "black" }}> {this.state.notification}</span> */}
           <NotText
             notification={this.state.notification}
             action={this.changeText}

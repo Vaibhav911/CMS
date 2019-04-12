@@ -13,9 +13,16 @@ class TimeExtraClass extends Component {
   }
   render() {
     return (
-      <span style={{ color: "grey" }}>
+      <span style={{ color: "grey", fontSize: "20px", padding: "4px" }}>
         Enter Time:
-        <span style={{ color: "red" }}>
+        <span
+          style={{
+            color: "red",
+            fontSize: "20px",
+            padding: "4px",
+            borderRadius: "6px"
+          }}
+        >
           {" "}
           <input type="time" name="time" onChange={this.handlesChange} />
           <br />

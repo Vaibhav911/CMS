@@ -14,7 +14,9 @@ class TopicText extends Component {
     return (
       <span>
         {" "}
-        <span style={{ color: "grey" }}>Topic&nbsp;:</span>
+        <span style={{ color: "grey", fontSize: "20px", padding: "9px" }}>
+          Topic&nbsp;:
+        </span>
         <span style={{ color: "black" }}>
           <textarea rows="1" cols="60" onChange={this.handleChange}>
             {this.props.topic}

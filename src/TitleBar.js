@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
+import Cookies from "universal-cookie";
 import "./BITS.png";
 import "./logoutbutton.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "mdbreact/dist/css/mdb.css";
+
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -19,6 +21,7 @@ import {
   MDBDropdownItem,
   MDBIcon
 } from "mdbreact";
+var cookies = new Cookies();
 
 class TitleBar extends Component {
   state = {
@@ -32,6 +35,13 @@ class TitleBar extends Component {
   };
 
   render() {
+    var desig = cookies.get("designation");
+    var homestr;
+    if (desig == "student") {
+      homestr = "http://cms-bits.herokuapp.com/home";
+    } else if (desig == "faculty") {
+      homestr = "http://cms-bits.herokuapp.com/facultyhome";
+    }
     return (
       <div>
         <MDBNavbar color="default-color" dark expand="md">
@@ -45,23 +55,27 @@ class TitleBar extends Component {
               width="42"
             />
             <MDBNavbarBrand>
-              <strong className="white-text">Course Management System</strong>
+              <a href={homestr}>
+                <strong className="white-text">Course Management System</strong>
+              </a>
             </MDBNavbarBrand>
             <MDBNavbarNav left>
-              <input
-                type="button"
-                href="#ff!"
-                //onClick={this.state.logoutFunc}
-                value="Home"
-                class="logout"
-              />
+              {/* <a href="/home">
+                <input
+                  type="button"
+                  href="/home"
+                  // onClick={this.state.logoutFunc}
+                  value="Home"
+                  class="logout"
+                />
+              </a> */}
               {/* <MDBNavItem active>
                 <MDBNavLink to="#!">Home</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="#!">Help</MDBNavLink>
               </MDBNavItem> */}
-              <MDBNavItem>
+              {/* <MDBNavItem>
                 <MDBDropdown>
                   <MDBDropdownToggle nav caret>
                     <div className="d-none d-md-inline">Dropdown</div>
@@ -71,10 +85,12 @@ class TitleBar extends Component {
                     <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
-              </MDBNavItem>
+              </MDBNavItem> */}
             </MDBNavbarNav>
             <MDBNavbarBrand>
-              <strong className="white-text">Hello User</strong>
+              <strong className="white-text">
+                {"Hello " + cookies.get("username")}
+              </strong>
             </MDBNavbarBrand>
             <MDBNavbarNav right>
               <input
@@ -91,7 +107,7 @@ class TitleBar extends Component {
                     <MDBIcon icon="user" />
                   </MDBDropdownToggle>
                   <MDBDropdownMenu className="dropdown-default" right>
-                    <MDBDropdownItem href="#!">Profile</MDBDropdownItem>
+                    <MDBDropdownItem href="/profile">Profile</MDBDropdownItem>
                     <MDBDropdownItem href="#!">My Account</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>

@@ -51,6 +51,8 @@ p {
   width: 1515px;
   height: 190px;
   border-radius: 8px;
+  padding-bottom: 5px;
+  font-size: 25px;
 }
 .course-material-box {
   border: 1px solid black;

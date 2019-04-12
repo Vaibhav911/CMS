@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { Router } from "react-router";
 import routes from "./routes.js";
 import AllMiniNotificationTab from "./allmininotificationtab.js";
+import AddFacultyAndCourse from "./AddFacultyAndCourses.js";
 
 import TitleBar from "./TitleBar.js"; //dhruv
 import "./BITS.png";

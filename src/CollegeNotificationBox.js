@@ -11,18 +11,46 @@ class NotificationTab extends Component {
   componentDidMount() {
     console.log("mounting collegenotification component");
     axios
-      .get("https://nameless-shelf-39498.herokuapp.com/getEvent")
+      .get("http://nameless-shelf-39498.herokuapp.com/getEvent")
       .then(res => {
         console.log("from notificatoin tab " + res.data);
-        this.setState({
-          not1: JSON.stringify(res.data[0].topic)
-        });
-        this.setState({
-          not2: JSON.stringify(res.data[0].topic)
-        });
-        this.setState({
-          not3: JSON.stringify(res.data[0].topic)
-        });
+        // this.setState({
+        //   not1: JSON.stringify(res.data[0].topic)
+        // });
+        // this.setState({
+        //   not2: JSON.stringify(res.data[0].topic)
+        // });
+        // this.setState({
+        //   not3: JSON.stringify(res.data[0].topic)
+        // });
+        var len = res.data.length;
+        console.log("length for ashish is " + len);
+        if (len == 0) {
+          this.setState({
+            not1: "No new notifications"
+          });
+        } else if (len == 1) {
+          this.setState({
+            not1: "1. " + res.data[0].topic
+          });
+        } else if (len == 2) {
+          this.setState({
+            not1: "1. " + res.data[0].topic
+          });
+          this.setState({
+            not2: "2. " + res.data[1].topic
+          });
+        } else if (len >= 3) {
+          this.setState({
+            not1: "1." + res.data[len - 1].topic
+          });
+          this.setState({
+            not2: "2. " + res.data[len - 2].topic
+          });
+          this.setState({
+            not3: "3. " + res.data[len - 3].topic
+          });
+        }
       });
     console.log("done collegenotiication mounting");
     // console.log("curr sate " + JSON.stringify(this.state));
@@ -30,14 +58,14 @@ class NotificationTab extends Component {
   render() {
     // s
     return (
-      <div className="box1">
+      <div className="box1" style={{ paddingBottom: "20px" }}>
         <p>{this.state.response}</p>
         <p className="nil-height" />
-        <a href="google.com">{this.state.not1}</a>
+        <span>{this.state.not1}</span>
         <p />
-        <a href="google.com">{this.state.not2}</a>
+        <span>{this.state.not2}</span>
         <p />
-        <a href="google.com">{this.state.not3}</a>
+        <span>{this.state.not3}</span>
         <p />
       </div>
     );

@@ -46,6 +46,8 @@ p {
   width: 300px;
   height: 190px;
   border-radius: 8px;
+  font-size: 20px;
+  padding-left: 5px;
 }
 
 .course-material-box {

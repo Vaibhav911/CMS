@@ -12,9 +12,9 @@ class Date extends Component {
   }
   render() {
     return (
-      <span style={{ color: "black" }}>
+      <span style={{ color: "black", fontSize: "20px", padding: "4px" }}>
         Enter Date&nbsp;:
-        <span style={{ color: "grey" }}>
+        <span style={{ color: "grey", fontSize: "20px", padding: "4px" }}>
           {" "}
           <input type="date" name="date" onChange={this.handleChange} />
           <br />

@@ -14,14 +14,15 @@ class NotText extends Component {
     return (
       <div>
         <textarea
-          cols="50"
+          cols="100"
           value={this.props.notification}
           onChange={this.handleChange.bind(this)}
           rows="10"
           style={{
             backgroundColor: "yellow",
             borderRadius: "5px",
-            color: "red"
+            color: "red",
+            width: "900px"
           }}
         />
       </div>

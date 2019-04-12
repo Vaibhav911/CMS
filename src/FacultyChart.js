@@ -1,6 +1,8 @@
 /* App.js */
 import React, { Component } from "react";
 import CanvasJSReact from "./canvasjs.react.js";
+import TitleBar from "./TitleBar.js";
+import StickyNotes from "./StickyFinal.js";
 var axios = require("axios");
 //var React = require('react');
 //var ReactDOM = require('react-dom');
@@ -17,7 +19,8 @@ class FacultyChart extends Component {
     var len = 1;
     axios
       .get(
-        "https://nameless-shelf-39498.herokuapp.com/getmarks/?courseId=CSF111"
+        "http://nameless-shelf-39498.herokuapp.com/getmarks/?courseId=" +
+          this.props.courseId
       )
       .then(res => {
         var len = res.data.student[0].studentMarks.length;
@@ -76,8 +79,12 @@ class FacultyChart extends Component {
     console.log("there obj " + JSON.stringify(options.data));
     return (
       <div>
-        <CanvasJSChart options={options} onRef={ref => (this.chart = ref)} />
-        {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+        <TitleBar />
+        <div>
+          <CanvasJSChart options={options} onRef={ref => (this.chart = ref)} />
+          {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+        </div>
+        <StickyNotes />
       </div>
     );
   }

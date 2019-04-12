@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Cookies from "universal-cookie";
+var cookies = new Cookies();
 var axios = require("axios");
 
 class StickyNotes extends Component {
@@ -8,20 +10,25 @@ class StickyNotes extends Component {
   }
 
   componentDidMount() {
-    var userId;
-    axios.get("https://nameless-shelf-39498.herokuapp.com/getuserid").then(res => {
-      console.log("user id is " + JSON.stringify(res.data));
-      userId = res.data;
-    });
-    axios.get("https://nameless-shelf-39498.herokuapp.com/getcontent/?studentId=").then(res => {
-      this.setState({
-        content: res.data.content,
-        studentId: res.data.studentId
+    var userId = cookies.get("username");
+    // axios.get("http://nameless-shelf-39498.herokuapp.com/getuserid").then(res => {
+    //   console.log("user id is " + JSON.stringify(res.data));
+    //   userId = res.data;
+    // });
+    axios
+      .get(
+        "http://nameless-shelf-39498.herokuapp.com/getcontent/?studentId=" +
+          userId
+      )
+      .then(res => {
+        this.setState({
+          content: res.data.content,
+          studentId: res.data.studentId
+        });
+        console.log("state: " + this.state.content);
       });
-      console.log("state: " + this.state.content);
-    });
     console.log("component mounted" + this.state.content);
-    // axios.post('http://localhost:5000/addnote/?studentId=1', {content: this.state.content});
+    // axios.post('http://nameless-shelf-39498.herokuapp.com/addnote/?studentId=1', {content: this.state.content});
   }
   // componentWillUnmount()
   // {
@@ -29,7 +36,7 @@ class StickyNotes extends Component {
   //         let content =this.state.content;
   //         console.log("shudiuashidsahdo;ijas"+content);
 
-  //     axios.post("http://localhost:5000/addnote/?studentId=1", {
+  //     axios.post("http://nameless-shelf-39498.herokuapp.com/addnote/?studentId=1", {
   //         content:content
 
   //       });
@@ -39,9 +46,14 @@ class StickyNotes extends Component {
     this.setState({ content: e.target.value });
     var studentId = this.state.studentId;
     console.log("content in react " + this.state.content);
-    axios.post("https://nameless-shelf-39498.herokuapp.com/addnote/?studentId=1", {
-      content: this.state.content
-    });
+    console.log("username for vednat " + cookies.get("username"));
+    axios.post(
+      "http://nameless-shelf-39498.herokuapp.com/addnote/?studentId=" +
+        cookies.get("username"),
+      {
+        content: this.state.content
+      }
+    );
   }
   // onClick
   // {
@@ -53,12 +65,18 @@ class StickyNotes extends Component {
     return (
       <div>
         <textarea
-          cols="30"
+          cols="24"
           value={this.state.content}
           onChange={this.onChange.bind(this)}
-          rows="24"
+          rows="6"
           name="content"
-          style={{ backgroundColor: "yellow", borderRadius: "5px" }}
+          style={{
+            backgroundColor: "#1EF98B",
+            borderRadius: "10px",
+            fontSize: "30px",
+            margin: "30px",
+            marginBottom: "10px"
+          }}
         />
         {/* <input type="text" value={this.state.inputVal} onChange={(e) => {this.setState({inputVal: e.target.value})}} onChange={(e) => {this.setState({content: e.target.value})}}/> */}
       </div>

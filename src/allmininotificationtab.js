@@ -12,7 +12,7 @@ class AllMiniNotificationTab extends Component {
   componentDidMount() {
     axios
       .get(
-        "https://nameless-shelf-39498.herokuapp.com/home/?studentId=2017A7PS0187H"
+        "http://nameless-shelf-39498.herokuapp.com/home/?studentId=2017A7PS0187H"
       )
       .then(res => {
         console.log("res " + JSON.stringify(res.data));

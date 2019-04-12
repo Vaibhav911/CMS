@@ -1,17 +1,30 @@
 @import url("https://fonts.googleapis.com/css?family=Numans");
 
-html,
-body {
-  /* background-image: url("https://res.cloudinary.com/highereducation/image/upload/v1533591754/TheBestColleges.org/study-notebooks.jpg"); */
-  background-size: cover;
+.back{
+  /* background-image: url("https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/BITS_Pilani-Logo.svg/1200px-BITS_Pilani-Logo.svg.png"); 
+   background-size: 20% ;
+  background-repeat: no-repeat;
+  height: 100%;  */
+  background-image: url("https://www.bits-pilani.ac.in/Uploads/Hyderabad/adminforhyderabad/sections/2015-6-25--12-26-25-520_Admin_Block.jpg");
+  background-size: 100% ;
   background-repeat: no-repeat;
   height: 100%;
+  
+}
+
+.hell {
+  /* background-color: #3cbc8d; */
+  
   font-family: "Numans", sans-serif;
 }
 
 .container {
+  /* background-image: url("https://www.bits-pilani.ac.in/Uploads/Hyderabad/adminforhyderabad/sections/2015-6-25--12-26-25-520_Admin_Block.jpg");
+  background-size: 100% ;
+  background-repeat: no-repeat; */
   height: 100%;
   align-content: center;
+  background-position: 0rem ;
 }
 
 .card {
@@ -78,8 +91,8 @@ input:focus {
   background-color: white;
 }
 
-.links {
-  color: white;
+.hov {
+  background-color: #f4a460;
 }
 
 .links a {

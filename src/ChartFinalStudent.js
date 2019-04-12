@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Calculations from "./FacultyGraphCalculations.js";
-import FacultyChart from "./FacultyChart.js";
+import StudentPerformanceGraph from "./StudentPerformanceGraph.js";
 
-class ChartFinal extends Component {
+class ChartFinalStudent extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,7 +13,7 @@ class ChartFinal extends Component {
     var courseId = course.substr(1);
     return (
       <div>
-        <FacultyChart app={this.state.app} courseId={courseId} />
+        <StudentPerformanceGraph app={this.state.app} courseId={courseId} />
         <Calculations
           calculation={this.state.calculation}
           courseId={courseId}
@@ -23,4 +23,4 @@ class ChartFinal extends Component {
   }
 }
 
-export default ChartFinal;
+export default ChartFinalStudent;

@@ -37,9 +37,9 @@ class PostNotificationCancelClass extends Component {
     let notification = this.state.notification;
     let date = this.state.date;
     let time = this.state.time;
-    let course = "csf210";
+    let course = this.props.courseId;
 
-    axios.post("https://nameless-shelf-39498.herokuapp.com/create", {
+    axios.post("/create", {
       courseId: course,
       notification: notification,
       topic: topic,
@@ -58,14 +58,17 @@ class PostNotificationCancelClass extends Component {
           <span style={{ color: "red" }}>
             <h2>Post Notification For Cancelling Class</h2>
           </span>
-          <span style={{ color: "grey" }}>
-            <span style={{ color: "black" }}>Topic&nbsp;&nbsp;&nbsp; :-</span>{" "}
+          <span style={{ color: "grey", fontSize: "20px", padding: "4px" }}>
+            <span style={{ color: "black", fontSize: "20px", padding: "4px" }}>
+              Topic&nbsp;&nbsp;&nbsp; :-
+            </span>{" "}
             {this.state.topic}
             <br />
           </span>
           <DateCancelClass date={this.state.date} action={this.changeDate} />
           <span style={{ color: "black" }}>
-            Resulted Notification:<br />
+            Resulted Notification:
+            <br />
           </span>
 
           <NotText

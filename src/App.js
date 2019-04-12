@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Route, BrowserRouter } from "react-router-dom";
+// import { browserHistory } from "react-router";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -28,9 +29,20 @@ import NotificationTab from "./CollegeNotificationBox.js";
 import HomePage from "./homepage.js";
 import CoursePage from "./coursepage.js";
 import ChartFinal from "./FacultyPerformanceGraph";
+import TitleBar from "./TitleBar.js";
 import StudentPerformanceGraph from "./StudentPerformanceGraph.js";
 import StudentProfile from "./StudentProfile.js";
 import ButtonsForFaculty from "./ButtonsForFaculty.js";
+import AddFacultyAndCourses from "./AddFacultyAndCourses";
+import PostPreviousYearPaper from "./PostPreviousYearPaper.js";
+import UploadCourseMaterial from "./UploadCourseMaterial.js";
+import AdminProfile from "./AdminProfile.js";
+import CourseAllNotification from "./getAllNotificationOfCourse.js";
+import Mark from "./mark.jsx";
+import FacultyHomePage from "./FacultyHomePage.js";
+import GetPrevYearPaper from "./getPrevYrPaper.js";
+import ViewMark from "./viewMarks";
+import StickyNotes from "./StickyFinal";
 
 class App extends Component {
   render() {
@@ -61,16 +73,32 @@ class App extends Component {
             path="/profile"
             render={() => (
               <div>
+                <TitleBar />
                 <StudentProfile />
+                <StickyNotes />
               </div>
             )}
           />
           <Route
             exact={true}
             path="/facultyperformanceanalysis"
+            component={ChartFinal}
+          />
+          <Route
+            exact={true}
+            path="/addfaculty"
             render={() => (
               <div>
-                <ChartFinal />
+                <AddFacultyAndCourses />
+              </div>
+            )}
+          />
+          <Route
+            exact={true}
+            path="/postpreviousyearpaper"
+            render={() => (
+              <div>
+                <PostPreviousYearPaper />
               </div>
             )}
           />
@@ -85,22 +113,64 @@ class App extends Component {
           />
           <Route
             exact={true}
-            path="/facultycoursepage"
+            path="/uploadcoursematerial"
             render={() => (
               <div>
-                <ButtonsForFaculty />
+                <UploadCourseMaterial />
               </div>
             )}
           />
           <Route
             exact={true}
+            path="/facultycoursepage"
+            component={ButtonsForFaculty}
+          />
+          <Route
+            exact={true}
             path="/studentperformanceanalysis"
+            component={StudentPerformanceGraph}
+          />
+          <Route
+            exact={true}
+            path="/adminprofile"
             render={() => (
               <div>
-                <StudentPerformanceGraph />
+                <AdminProfile />
               </div>
             )}
           />
+          <Route
+            exact={true}
+            path="/uploadmarks"
+            render={() => (
+              <div>
+                <TitleBar />
+                <Mark />
+                {/* <StickyNotes /> */}
+              </div>
+            )}
+          />
+          <Route
+            exact={true}
+            path="/notification"
+            component={CourseAllNotification}
+          />
+          <Route
+            exact={true}
+            path="/facultyhome"
+            render={() => (
+              <div>
+                <TitleBar />
+                <FacultyHomePage />
+              </div>
+            )}
+          />
+          <Route
+            exact={true}
+            path="/previousyearpaper"
+            component={GetPrevYearPaper}
+          />
+          <Route exact={true} path="/viewmarks" component={ViewMark} />
         </div>
       </BrowserRouter>
     );

@@ -13,9 +13,16 @@ class ClassExtraClass extends Component {
   }
   render() {
     return (
-      <span style={{ color: "grey" }}>
+      <span
+        style={{
+          color: "grey",
+          fontSize: "20px",
+          padding: "4px",
+          borderRadius: "6px"
+        }}
+      >
         Enter ClassRoom:
-        <span>
+        <span style={{ borderRadius: "6px" }}>
           <input type="text" name="room" onChange={this.handleChange} />
           <br />
         </span>
