@@ -19,6 +19,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 // } from "mdbreact";
 
 import Login from "./login.js"; //prakhar
+import Root from "./root.js" ;
 
 // import TitleBar from "./TitleBar.js"; //dhruv
 // import "./BITS.png";
@@ -50,6 +51,15 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+        <Route
+            exact={true}
+            path="/"
+            render={() => (
+              <div>
+                <Root/>
+              </div>
+            )}
+          />
           <Route
             exact={true}
             path="/login"
@@ -59,6 +69,7 @@ class App extends Component {
               </div>
             )}
           />
+
           <Route
             exact={true}
             path="/home"
