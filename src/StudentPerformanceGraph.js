@@ -23,9 +23,7 @@ class StudentPerformanceGraph extends Component {
     var course = this.props.history.location.search;
     console.log("its properties are " + course.substr(1));
     var courseId = course.substr(1);
-    var str =
-      "http://nameless-shelf-39498.herokuapp.com/getmarks/?courseId=" +
-      courseId;
+    var str = "http://nameless-shelf-39498.herokuapp.com/getmarks/?courseId=" + courseId;
     console.log("link to be sent " + str);
     axios.get(str).then(res => {
       var studentId = cookies.get("username");

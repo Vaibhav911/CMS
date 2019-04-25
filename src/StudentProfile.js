@@ -34,10 +34,10 @@ class StudentProfile extends Component {
     axios.get("http://nameless-shelf-39498.herokuapp.com/getData").then(res => {
       console.log("here it isr" + res);
       var length = [];
-      var i = 0;
+      // var i = 0;
       console.log("papa" + res.data.length);
-      for (i = 0; i < res.data.length; i++) {
-        length.push(i);
+      for (var j = 0; j < res.data.length; j++) {
+        length.push(j);
       }
       console.log("haha" + length);
       this.setState({

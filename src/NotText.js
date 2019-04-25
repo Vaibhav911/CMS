@@ -22,7 +22,7 @@ class NotText extends Component {
             backgroundColor: "yellow",
             borderRadius: "5px",
             color: "red",
-            width: "900px"
+            width: "600px"
           }}
         />
       </div>

@@ -11,7 +11,8 @@ var cookies = new Cookies();
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    flag: false
     // redirect: false
   };
 
@@ -52,6 +53,11 @@ class Login extends Component {
   };
 
   render() {
+    if (this.state.flag == false) {
+      cookies.remove("username");
+      cookies.remove("designation");
+      this.setState({ flag: true });
+    }
     const { username, password } = this.state;
     return (
       <div className="back">

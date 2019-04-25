@@ -34,14 +34,16 @@ class AdminProfile extends Component {
       console.log("here it isr" + res);
       var length = [];
       var i = 0;
+      console.log("in axios func");
       console.log("papa" + res.data.length);
-      for (i = 0; i < res.data.length; i++) {
-        length.push(i);
+      for (var j = 0; j < res.data.length; j++) {
+        length.push(j);
       }
-      console.log("haha" + length);
+      console.log("data is here" + JSON.stringify(res.data));
+      console.log("haha" + length.length);
       this.setState({
         length: length,
-        length1: res.length,
+        length1: res.data.length,
         data: res.data
       });
     });
@@ -49,7 +51,7 @@ class AdminProfile extends Component {
 
   putDataToDB = (message, name, age, contact, emailId, password) => {
     let idToBeAdded = this.state.id;
-
+    console.log("In putdata...." + idToBeAdded);
     axios.post("http://nameless-shelf-39498.herokuapp.com/putData", {
       id: idToBeAdded,
       message: message,
@@ -65,6 +67,7 @@ class AdminProfile extends Component {
   // to remove existing database information
   deleteFromDB = idTodelete => {
     let objIdToDelete = null;
+    console.log("In del from db" + idTodelete);
     this.state.data.forEach(dat => {
       if (dat.id == idTodelete) {
         objIdToDelete = dat._id;
@@ -120,12 +123,12 @@ class AdminProfile extends Component {
   render() {
     const { data } = this.state;
     // console.log(data);
-    console.log(data);
-    console.log("length array:" + this.state.length);
+    console.log("In render data" + JSON.stringify(data));
+    console.log("length array:" + this.state.length.length);
     return (
       <div>
         <ul>
-          {this.state.length <= 0
+          {this.state.length.length <= 0
             ? "NO DB ENTRIES YET"
             : this.state.length.map(dat => (
                 <li style={{ padding: "10px" }} key={data.id}>

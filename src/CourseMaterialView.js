@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./CollegeNotificationBox.css";
 import "./App.css";
 var axios = require("axios");
 
@@ -26,7 +27,7 @@ class CourseMaterialView extends Component {
     var len = this.state.file.length;
     for (var i = 0; i < len; i++)
       table.push(
-        <tr style={{ padding: "100px", margin: "100px" }}>
+        <tr style={{ padding: "100px", margin: "500px" }}>
           <a className="course-material-box" href={this.state.file[i].fileLink}>
             {this.state.file[i].fileName}
           </a>

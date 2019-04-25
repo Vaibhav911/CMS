@@ -1,25 +1,24 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import { Route, BrowserRouter } from "react-router-dom";
 // import { browserHistory } from "react-router";
-import {
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink,
-  MDBNavbarToggler,
-  MDBCollapse,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBIcon
-} from "mdbreact";
+// import {
+//   MDBNavbar,
+//   MDBNavbarBrand,
+//   MDBNavbarNav,
+//   MDBNavItem,
+//   MDBNavLink,
+//   MDBNavbarToggler,
+//   MDBCollapse,
+//   MDBDropdown,
+//   MDBDropdownToggle,
+//   MDBDropdownMenu,
+//   MDBDropdownItem,
+//   MDBIcon
+// } from "mdbreact";
 
 import Login from "./login.js"; //prakhar
-import Root from './root.js';
 
 // import TitleBar from "./TitleBar.js"; //dhruv
 // import "./BITS.png";
@@ -44,21 +43,13 @@ import FacultyHomePage from "./FacultyHomePage.js";
 import GetPrevYearPaper from "./getPrevYrPaper.js";
 import ViewMark from "./viewMarks";
 import StickyNotes from "./StickyFinal";
+import Dashboard from "./dashboard.js";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div>
-         <Route
-            exact={true}
-            path="/"
-            render={() => (
-              <div>
-                <Root/>
-              </div>
-            )}
-          />
           <Route
             exact={true}
             path="/login"
@@ -145,6 +136,9 @@ class App extends Component {
             path="/adminprofile"
             render={() => (
               <div>
+                <TitleBar />
+                <div>Login record</div>
+                <Dashboard />
                 <AdminProfile />
               </div>
             )}

@@ -93,14 +93,15 @@ class TitleBar extends Component {
               </strong>
             </MDBNavbarBrand>
             <MDBNavbarNav right>
-              <input
-                type="button"
-                href="#ff!"
-                //onClick={this.state.logoutFunc}
-                value="Logout"
-                class="logout"
-              />
-
+              <a href="http://cms-bits.herokuapp.com/login">
+                <input
+                  type="button"
+                  href="http://cms-bits.herokuapp.com/login"
+                  // onClick={cookies.remove("username")}
+                  value="Logout"
+                  class="logout"
+                />
+              </a>
               <MDBNavItem>
                 <MDBDropdown>
                   <MDBDropdownToggle nav caret>

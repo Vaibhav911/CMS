@@ -34,14 +34,11 @@ class UploadCourseMaterial extends Component {
     console.log("hokos" + fileName);
     console.log("asad" + fileLink);
 
-    axios.post(
-      "http://nameless-shelf-39498.herokuapp.com/uploadcoursematerial",
-      {
-        courseId: course,
-        fileName: fileName,
-        fileLink: fileLink
-      }
-    );
+    axios.post("http://nameless-shelf-39498.herokuapp.com/uploadcoursematerial", {
+      courseId: course,
+      fileName: fileName,
+      fileLink: fileLink
+    });
   };
 
   render() {

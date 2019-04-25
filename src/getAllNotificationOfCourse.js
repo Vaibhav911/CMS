@@ -32,7 +32,7 @@ class CourseAllNotification extends Component {
     console.log("its properties are " + course.substr(1));
     var courseId = course.substr(1);
 
-    //localhost:5000/coursenotifications/?courseId=CSF111
+    //nameless-shelf-39498.herokuapp.com/coursenotifications/?courseId=CSF111
 
     axios
       .get(

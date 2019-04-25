@@ -9,15 +9,15 @@ const Schema = mongoose.Schema;
 // this will be our data base's data structure
 const StudentProfileSchema = new Schema(
   {
-    id: { type: String, unique: true, required: true },
+    id: { type: String, required: true },
     message: String,
     name: String,
     age: Number,
     contact: Number,
     emailId: String,
     password: String
-  },
-  { timestamps: true }
+  }
+  // { timestamps: true }
 );
 
 // export the new Schema so we could modify it using Node.js

@@ -106,8 +106,7 @@ class ButtonsForFaculty extends Component {
           </a>
           <a
             href={
-              "http://cms-bits.herokuapp.com/facultyperformanceanalysis/?" +
-              courseId
+              "http://cms-bits.herokuapp.com/facultyperformanceanalysis/?" + courseId
             }
           >
             <input
@@ -126,7 +125,7 @@ class ButtonsForFaculty extends Component {
         <li class='last'><a href='#'><span>Show Marks</span></a></li>*/}
 
         {this.state.id == 1 ? (
-          <div style={{ width: "1200px" }}>
+          <div style={{ width: "1000px" }}>
             <PostNotificationExtraClass courseId={courseId} />
           </div>
         ) : (

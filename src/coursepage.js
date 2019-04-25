@@ -20,8 +20,7 @@ class CoursePage extends Component {
     var courseId = course.substr(1);
     console.log("course id is " + courseId);
     var str =
-      "http://cms-bits.herokuapp.com/studentperformanceanalysis/?" +
-      course.substr(1);
+      "http://cms-bits.herokuapp.com/studentperformanceanalysis/?" + course.substr(1);
     console.log("str is " + str);
     return (
       <div>
@@ -31,15 +30,13 @@ class CoursePage extends Component {
           style={{
             float: "left",
             padding: 15,
-            width: "1000px",
+            width: "300px",
             margin: "10px"
           }}
         >
           <CourseMaterialView courseId={course.substr(1)} />
         </div>
-        <div style={{ float: "right", padding: 15 }}>
-          <StickyNotes />
-        </div>
+
         <div style={{ float: "right", padding: 15, width: "400px" }}>
           <a href={str}>
             <input
@@ -58,6 +55,9 @@ class CoursePage extends Component {
             />
           </a>
           <PreviousPaperView courseId={courseId} />
+          <div style={{ float: "right", padding: 15 }}>
+            <StickyNotes />
+          </div>
         </div>
       </div>
     );
