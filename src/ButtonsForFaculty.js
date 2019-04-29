@@ -144,7 +144,6 @@ class ButtonsForFaculty extends Component {
         {this.state.id == 4 ? <UploadCourseMaterial courseId={courseId} /> : ""}
         {/* <GetNotifications /> */}
         <div style={{ float: "right" }}>
-          <StickyNotes />
         </div>
       </div>
     );
