@@ -63,6 +63,7 @@ class GetPrevYrPaper extends Component {
         >
           <table>{table}</table>
         </div>
+      <StickyNotes />
       </div>
     );
   }
